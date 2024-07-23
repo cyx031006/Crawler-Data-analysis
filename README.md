@@ -50,14 +50,16 @@ pip install requests pandas jieba snownlp pyecharts
 
 我这里爬取弹幕的时间区间是2024/7/13-2024/7/21，所以最后输出了九个原始的so文件，通过对so文件进行分析并利用正则表达式提取九个文件中的弹幕内容到一个txt文件中。
 
-![](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/c8a66a9935dc488e994cc7d4aa340233~tplv-73owjymdk6-watermark.image?policy=eyJ2bSI6MywidWlkIjoiMzczNjU5NTI4ODgyOTk5NSJ9&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1722307755&x-orig-sign=OWvTK1uGqqgNLSLVriUV0tSrc%2FE%3D)​
+​![屏幕截图 2024-07-22 145856](https://github.com/user-attachments/assets/8c165f8b-5db9-4227-bd77-84078db83f04)
+
 
 <p align=center>爬取的SO文件内容</p>
 
 
 我们不难发现弹幕内容在：和@之间，所以我们用正则表达式很轻松的就能提取出来，但是里边有很多无关的内容，我们将在下一步数据清洗时去掉无关内容。
 
-![](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/ff0afe97a19941f6b3aa7d22c595849f~tplv-73owjymdk6-watermark.image?policy=eyJ2bSI6MywidWlkIjoiMzczNjU5NTI4ODgyOTk5NSJ9&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1722307755&x-orig-sign=Yc5EeZiJIWU%2F7nHXipU%2FWOIi1mc%3D)​
+![屏幕截图 2024-07-22 150512](https://github.com/user-attachments/assets/83b944d2-3bca-4e95-86ab-583fd2634ee1)
+
 
 <p align=center>提取的弹幕内容</p>
 
@@ -74,7 +76,8 @@ pip install requests pandas jieba snownlp pyecharts
 
 上面代码将生成一个叫'clean弹幕内容'的一个文件，但是这个数据清洗还是做的不到位，因为在每个弹幕内容前面有的还有一些无关紧要的数字或者字母。
 
-![](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/1404fff2db1748b68ffc9b9086b2a036~tplv-73owjymdk6-watermark.image?policy=eyJ2bSI6MywidWlkIjoiMzczNjU5NTI4ODgyOTk5NSJ9&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1722307755&x-orig-sign=UVTMNkK3F1qZtD8%2BpX7Nbwo6gUI%3D)​
+​![屏幕截图 2024-07-22 151035](https://github.com/user-attachments/assets/699de42c-df00-4fb7-a8e6-14b25d86f675)
+
 
 <p align=center>数据清洗后的txt文件</p>
 
@@ -91,13 +94,14 @@ pip install requests pandas jieba snownlp pyecharts
 
 输出包括两个文件一个是分词后的文件“C-class-fenci.txt”和词频统计文件“2024-07-21-fc.csv”。（注意：停用词库可以在网上寻找下载）
 
-![](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/00563768935c4d19bd7d8ce0613a8ae8~tplv-73owjymdk6-watermark.image?policy=eyJ2bSI6MywidWlkIjoiMzczNjU5NTI4ODgyOTk5NSJ9&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1722307755&x-orig-sign=rSpSEED02oHkImE%2BMl0%2FSlcloJ4%3D)​
+​![屏幕截图 2024-07-22 152546](https://github.com/user-attachments/assets/b823d2da-d49d-4a60-9bc4-6370f8ccaf60)
+
 
 <p align=center>分词后的txt文件</p>
 
 
+​![屏幕截图 2024-07-22 152737](https://github.com/user-attachments/assets/200125e7-39c3-4952-ab80-096d9e1f5a84)
 
-![](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/86e8f0a554d04946819d7650b4a01354~tplv-73owjymdk6-watermark.image?policy=eyJ2bSI6MywidWlkIjoiMzczNjU5NTI4ODgyOTk5NSJ9&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1722307755&x-orig-sign=gaIda3Q6Um5mKFgXrsVXbLVFr6k%3D)​
 
 <p align=center>词频统计csv文件</p>
 
@@ -111,7 +115,8 @@ pip install requests pandas jieba snownlp pyecharts
 
 #### 2. 运行结果 
 
-![](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/8f0c472cbb9e40cfa5a43e4ffdc68284~tplv-73owjymdk6-watermark.image?policy=eyJ2bSI6MywidWlkIjoiMzczNjU5NTI4ODgyOTk5NSJ9&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1722307755&x-orig-sign=JLGjEqWvweC%2BBBQrh6%2FJUheqLmg%3D)​
+​![屏幕截图 2024-07-22 153535](https://github.com/user-attachments/assets/0d563fdd-9aae-427d-b6ca-34a880839834)
+
 
 <p align=center>词云图</p>
 
@@ -122,7 +127,8 @@ pip install requests pandas jieba snownlp pyecharts
 
 ##### （1）前100高频词
 
-![](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/61c620eaf8c246c099397b66c246e0e4~tplv-73owjymdk6-watermark.image?policy=eyJ2bSI6MywidWlkIjoiMzczNjU5NTI4ODgyOTk5NSJ9&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1722307755&x-orig-sign=wlY5tHqTTlwxbQtNTYUSW5evI8g%3D)​
+​![屏幕截图 2024-07-22 173409](https://github.com/user-attachments/assets/e36c9692-acaa-42fd-b134-af6307321ef4)
+
 
 <p align=center>词频统计表</p>
 
@@ -184,13 +190,14 @@ pip install requests pandas jieba snownlp pyecharts
 
 #### 2. 运行结果 
 
-![](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/e11df52bfa2a4432b3837235236c91ad~tplv-73owjymdk6-watermark.image?policy=eyJ2bSI6MywidWlkIjoiMzczNjU5NTI4ODgyOTk5NSJ9&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1722307755&x-orig-sign=L3j8Tt5F2XotdzxoDrVVzfWgjbs%3D)​
+​![屏幕截图 2024-07-22 163206](https://github.com/user-attachments/assets/c180a5f1-18de-4650-b507-f563dd4279d3)
+
 
 <p align=center>每条弹幕的情感倾向</p>
 
+![屏幕截图 2024-07-22 163425](https://github.com/user-attachments/assets/3b68fe9d-d399-425e-974d-49e7ca7b72fc)
 
-
-![](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/86d7bd89d24c44f280e8101cd4631323~tplv-73owjymdk6-watermark.image?policy=eyJ2bSI6MywidWlkIjoiMzczNjU5NTI4ODgyOTk5NSJ9&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1722307755&x-orig-sign=2xgpDpB8XFRCqyuIMROVv9SGNoY%3D)​
+​
 
 <p align=center>情感分布图</p>
 
@@ -255,20 +262,23 @@ pip install requests pandas jieba snownlp pyecharts
 
 首先，我们用chrome浏览器打开B站官网，搜索萝卜快跑，点击一个视频。进入之后按F12或者CTRL+SHIFT+i进入开发者工具。步骤：点击Network、点击弹幕列表、点击seg.so的数据包
 
-![](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/c85faa3b3af44c3c90bf7a0d452749c9~tplv-73owjymdk6-watermark.image?policy=eyJ2bSI6MywidWlkIjoiMzczNjU5NTI4ODgyOTk5NSJ9&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1722307755&x-orig-sign=lL1KBRXxoDfYNIIR6%2BLFCeuLJcI%3D)![](<> "点击并拖拽以移动")​编辑
+![屏幕截图 2024-07-22 170710](https://github.com/user-attachments/assets/355d3ddc-871a-4a2d-833c-cf46a3043adf)
+
 
 打开后在headers页面我们可以找到requests url，里面就有我们所需要的oid
 
-![](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/b1d7efcb185047c1b287ab7b61339873~tplv-73owjymdk6-watermark.image?policy=eyJ2bSI6MywidWlkIjoiMzczNjU5NTI4ODgyOTk5NSJ9&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1722307755&x-orig-sign=%2BVdPjmw0pifhDrIbgE7zlzk3nyQ%3D)![](<> "点击并拖拽以移动")​编辑
+![屏幕截图 2024-07-22 171244](https://github.com/user-attachments/assets/a432746d-021a-4e4d-958e-bca78bb28685)
+
 
 ### （二）Cookie和user-agent
 
 在上一步中我们往下滑就可以找到cookie和user-agent
 
-![](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/596aee05fea1438bbd2e04291eb5397c~tplv-73owjymdk6-watermark.image?policy=eyJ2bSI6MywidWlkIjoiMzczNjU5NTI4ODgyOTk5NSJ9&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1722307755&x-orig-sign=YodCLwxjYojebef4UAqLcfqaZlA%3D)![](<> "点击并拖拽以移动")​编辑
+![屏幕截图 2024-07-22 171446_副本](https://github.com/user-attachments/assets/64eedf48-727a-4722-9f8c-9aa4d2c21529)
+
 
 ## 七、贡献指南
 
-本人是一名普通的在校本科生，暑假闲来无事自学做此项目，总体来说项目本身较为稚嫩，功能也不是很完善。我十分欢迎大家对本项目提出建议和意见。如果你发现了bug或有新的功能需求，请联系我进行反馈。也欢迎大家提交pull request，共同完善本项目。代码后续也会在GitHub上提交。
+本人是一名普通的在校本科生，暑假闲来无事自学做此项目，总体来说项目本身较为稚嫩，功能也不是很完善。我十分欢迎大家对本项目提出建议和意见。如果你发现了bug或有新的功能需求，请联系我进行反馈。也欢迎大家提交pull request，共同完善本项目。代码已经在GitHub上提交。
 
 ​
