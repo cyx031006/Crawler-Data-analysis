@@ -3,7 +3,9 @@ import requests
 import pandas as pd
 import time
 from tqdm import trange
-
+from data_cleaning import cleaning_data  # 第二步，清洗数据
+from word_frequency import get_word_frequency # 第三步，获取词频
+from sentiment_distribution import create_danmu_html # 第四步，生成html文件
 HEADERS_TEMPLATE = {
     "origin": "https://www.bilibili.com",
     "user-agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Mobile Safari/537.36"
@@ -53,7 +55,7 @@ def download_and_parse_danmu(url_list, headers):
     for i in trange(len(url_list)):  # 显示进度条
         url = url_list[i]
         response = requests.get(url, headers=headers)
-        so_filepath = f"danmu_{i}.so"
+        so_filepath = "output/danmu_so/"+f"danmu_{i}.so"
         with open(so_filepath, 'wb') as so_file:
             so_file.write(response.content)
         danmu_list = parse_so_file(so_filepath)
@@ -69,10 +71,10 @@ def save_danmu_to_file(danmakus, filename):
     danmakus: 弹幕内容列表
     filename: 保存文件的名称
     """
-    with open(f"{filename}.txt", 'w', encoding='utf-8') as file:
+    with open(f"{filename}", 'w', encoding='utf-8') as file:
         for danmu in danmakus:
             file.write(danmu + '\n')
-    print(f"{filename}.txt 已生成")
+    print(f"{filename} 已生成")
 
 # 主函数
 def main():
@@ -84,12 +86,14 @@ def main():
 
     start = input("请输入弹幕开始时间，格式年-月-日，例2020-09-01：")
     end = input("请输入弹幕结束时间，格式年-月-日，例2020-09-20：")
-    cookie = input("请输入你的Cookie：")
-    oid = input("请输入对应视频oid：")
-    name = input("请输入保存文件名称：")
+    # cookie = input("请输入你的Cookie：")
+    # oid = input("请输入对应视频oid：")
+    oid = "500001660574785"
+    # name = input("请输入保存文件名称：")
+    name = "output/弹幕内容.txt"
 
     headers = HEADERS_TEMPLATE.copy()
-    headers["cookie"] = "buvid3=4302AB19-E611-70CA-1961-57908865B74B50209infoc; b_nut=1721469950; _uuid=92B7CE67-694A-3E83-758C-10C44CC4B2C8E49110infoc; buvid_fp=93280bb7744e321a1276cc11e5adc33b; enable_web_push=DISABLE; buvid4=ACEA04B4-1C82-1D71-B4B1-EC634D3888AD51140-024072010-sZIurRVWX2DwMqIkjxRz8w%3D%3D; home_feed_column=5; SESSDATA=ff91df84%2C1737021999%2C7364e%2A72CjDgC3XYaUNRM8HApZbWL25U4KHA1vuWGf0wZlMPXCVsdy_vTpYNR9sHOcKb0-qYVi4SVmVNTTg3V084YTdoVlVkQjJjTkZESVVwbHRSRWtTYVRoUzVOSmdoc01JWmViZTBBdzEwUThpVnVLcHJhdmhoV19GUmsydFliY2xqNi10SlZZZkt1a2RnIIEC; bili_jct=aa635a1167266cfb774a694d19215efd; DedeUserID=440135686; DedeUserID__ckMd5=0b70536606dd68ab; header_theme_version=CLOSE; CURRENT_FNVAL=4048; rpdid=|(Yl)m|kmJk0J'u~kuR~||JJ; bili_ticket=eyJhbGciOiJIUzI1NiIsImtpZCI6InMwMyIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjE3MjkzNTAsImlhdCI6MTcyMTQ3MDA5MCwicGx0IjotMX0.sGBCVK5dYKq4RDI5XAbox-kbPuvhPS_4TTjKxw3DH6w; bili_ticket_expires=1721729290; b_lsid=102C105D46_190D0676D7A; browser_resolution=1707-811; bp_t_offset_440135686=956252856178966528; sid=nmwkq99q"
+    headers["cookie"] = "buvid3=D65D4B7D-A402-3C12-EEF2-0DA49AE1EC4682143infoc; b_nut=1715227882; _uuid=F5E8A886-EE19-113B-B352-2A1689BFEB3882218infoc; enable_web_push=DISABLE; home_feed_column=5; buvid4=FD71BAA8-BCF2-DF10-922F-57C534F786E082794-024050904-4ioT9isT2fxPz20sX4cuig%3D%3D; rpdid=|(um|JRY)Juk0J'u~ulkk~))R; DedeUserID=61814778; DedeUserID__ckMd5=ac5e26267ea6da24; header_theme_version=CLOSE; buvid_fp_plain=undefined; hit-dyn-v2=1; CURRENT_QUALITY=80; PVID=1; CURRENT_BLACKGAP=0; fingerprint=9409dc45be030ceff17dc72f42d03ae4; CURRENT_FNVAL=4048; buvid_fp=9409dc45be030ceff17dc72f42d03ae4; b_lsid=10EA6FF210_1918C64A00E; browser_resolution=1920-476; SESSDATA=c9b8d325%2C1740189291%2C05db3%2A82CjA4c22iUPpCCQO_iz0c3XnCMzGd8DcavaEzi4LbOs6MD97-c_9Pd7Qy4afXb6hA3ZgSVjg5WGRMeEZQVWlOY2RfUS1IT2R3SHVqSkdFTF9mWU5qN2dDRDFvQXducU9ua0t1aUtmRENYcjV3WEM1aTN1bDNMeVFUOTFVcjAwQ2l0aU9LVFVub19RIIEC; bili_jct=ffca1665fb6bd01544d6efb33099af42; bp_t_offset_61814778=969798860908003328; sid=8rq3yaro; bili_ticket=eyJhbGciOiJIUzI1NiIsImtpZCI6InMwMyIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjQ4OTY1MDIsImlhdCI6MTcyNDYzNzI0MiwicGx0IjotMX0.77JMuoMC4bWa7xbl_87FYrNM8wxjnxtuVD3TI2EAgrg; bili_ticket_expires=1724896442"
     headers["referer"] = f"https://www.bilibili.com/video/BV19z421q7GM/?spm_id_from=333.1007.top_right_bar_window_history.content.click&vd_source=5ec0bdf3923f0e72967dd9c6650e7943&oid={oid}"
 
     print("========正在爬取弹幕=========")
@@ -98,6 +102,12 @@ def main():
 
     print("========正在保存弹幕文本文件========")
     save_danmu_to_file(danmakus, name)
+    print(name)
+    return name
 
 if __name__ == "__main__":
-    main()
+    file_name = main()
+    clean_data_file_path =  cleaning_data(file_name)
+    get_word_frequency()
+    create_danmu_html()
+

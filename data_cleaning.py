@@ -39,9 +39,9 @@ def write_danmu_file(file_path, danmakus):
         for danmu in danmakus:
             file.write(danmu + '\n')
 
-def main():
+def cleaning_data(input_file_path):
     # 读取原始弹幕内容文件
-    input_file_path = 'output/弹幕内容.txt'
+    # input_file_path = 'output/弹幕内容.txt'
     output_file_path = 'output/clean弹幕内容.txt'
 
     danmakus = read_danmu_file(input_file_path)
@@ -61,6 +61,7 @@ def main():
     write_danmu_file(output_file_path, cleaned_danmakus)
 
     print(f"\n清洗后的弹幕内容已保存到 {output_file_path}")
+    return output_file_path
 
 if __name__ == "__main__":
-    main()
+    cleaning_data()

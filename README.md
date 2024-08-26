@@ -17,13 +17,15 @@
 
 本项目包括以下主要文件：
 
--   `danmu_crawler.py`: 爬取弹幕数据的Python脚本。
--   `data_cleaning.py`: 数据清洗与预处理脚本。
--   `word_frequency.py`: 分词和词频统计脚本。
--   `wordcloud.py`: 生成词云图的脚本。
--   `sentiment_analysis.py`: 进行情感分析的脚本。
--   `sentiment_distribution.py`: 生成情感分布图的脚本。
+-   1.`danmu_crawler.py`: 爬取弹幕数据的Python脚本。
+-   2.`data_cleaning.py`: 数据清洗与预处理脚本。
+-   3.`word_frequency.py`: 分词和词频统计脚本。
+-   4.`wordcloud.py`: 生成词云图的脚本。
+-   5.`sentiment_analysis.py`: 进行情感分析的脚本。
+-   6.`sentiment_distribution.py`: 生成情感分布图的脚本。
 
+### 改良
+在原作者的代码基础上，将以上1236脚本合并到了“danmu_crawler”脚本中的main方法，只需要在“danmu_crawler”脚本中实时更新cookie和oid，即可一步获取弹幕数据，清洗，获取词频以及生成情感分布图
 ## 四、使用说明
 
 ### **环境配置**

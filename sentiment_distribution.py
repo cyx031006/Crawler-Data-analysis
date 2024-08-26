@@ -40,7 +40,7 @@ def generate_sentiment_distribution_chart(sentiments):
     return bar
 
 
-def main():
+def create_danmu_html():
     input_file_path = 'output/clean弹幕内容.txt'
     sentiment_chart_path = 'output/sentiment_distribution.html'
     keyword_trend_chart_path = 'keyword_trend.html'
@@ -58,4 +58,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    create_danmu_html()
